@@ -1,0 +1,177 @@
+<html>
+<title>Cadastro de pessoas</title>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Cadastro<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div id="sucessoAlert" class="alert alert-success fade show" style="display:none;" role="alert">
+        Pessoa cadastrada com sucesso
+    </div>
+
+    <form id="formPessoa" style="margin: 1%;" class="needs-validation" novalidate>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail">Email</label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+                <div class="invalid-feedback">
+                    Por favor, insira um email
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputNome">Nome</label>
+                <input type="text" class="form-control" id="inputNome" placeholder="Nome completo" required>
+                <div class="invalid-feedback">
+                    Por favor, insira seu nome
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEndereco">Endereço</label>
+            <input type="text" class="form-control" id="inputEndereco" placeholder="Rua 9 de julho" required>
+            <div class="invalid-feedback">
+                Por favor, insira um endereço
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputComplemento">Complemento</label>
+            <input type="text" class="form-control" id="inputComplemento" placeholder="">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCidade">Cidade</label>
+                <input type="text" class="form-control" id="inputCidade">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputEstado">Estado</label>
+                <select id="inputEstado" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MT</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PR</option>
+                    <option>PE</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
+                    <option>DF</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputCEP">CEP</label>
+                <input type="text" class="form-control" id="inputCEP">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        var forms = document.getElementsByClassName('needs-validation');
+                        if (forms[0].checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            forms[0].classList.add('was-validated');
+                        } else {
+                            var elements = document.getElementById("formPessoa").elements;
+                            var objPessoa = {
+                                "nome": elements["inputNome"].value,
+                                "email": elements["inputEmail"].value,
+                                "endereco": elements["inputEndereco"].value,
+                                "endereco_cidade": elements["inputCidade"].value,
+                                "endereco_CEP": elements["inputCEP"].value,
+                                "endereco_complemento": elements["inputComplemento"].value,
+                                "endereco_estado": elements["inputEstado"].value,
+                            }
+
+                            fetch("http://localhost:5000/api/v1/pessoas", {
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                method: "POST",
+                                body: JSON.stringify(objPessoa)
+                            }).then(function (response) {
+                                if (!response.ok) {
+                                    console.error(response);
+                                } else {
+                                    console.log("Pessoa cadastrada com sucesso");
+                                    $('#sucessoAlert').show();
+                                    setTimeout(
+                                        function () {
+                                            window.location = "index.html"
+                                        },
+                                        300);
+                                }
+                            }).catch(function (err) {
+                                console.error(err);
+                                event.preventDefault();
+                                event.stopPropagation();
+                            });
+                        }
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>
+
+</html>

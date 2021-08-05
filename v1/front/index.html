@@ -1,0 +1,140 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</head>
+<title>Cadastro de pessoas</title>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cadastro.html">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="table-responsive">
+        <table id="tabelaPessoas" class="table table-hover" style="margin: 1%;">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Endereco</th>
+                    <th scope="col">Complemento</th>
+                    <th scope="col">Cidade</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">CEP</th>
+                </tr>
+            </thead>
+            <tbody id="bodyTabelaPessoas">
+                <!-- <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+            </tr> -->
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            fetch("http://localhost:5000/api/v1/pessoas", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "GET",
+            }).then(function (response) {
+                if (!response.ok) {
+                    console.error(response);
+                } else {
+                    console.log("Pessoas recuperadas com sucesso");
+                    console.log(response);
+                    return response.json().then(function (jsonResposta) {
+                        console.log(jsonResposta);
+                        var tableBody = document.getElementById('bodyTabelaPessoas');
+                        jsonResposta.forEach(registro => {
+                            var tr = document.createElement('TR');
+                            tableBody.appendChild(tr);
+
+                            var th = document.createElement('TH');
+                            th.appendChild(document.createTextNode(registro.id));
+                            tr.appendChild(th);
+
+                            var td = document.createElement('TD');
+                            td.appendChild(document.createTextNode(registro.email));
+                            tr.appendChild(td);
+
+                            var td = document.createElement('TD');
+                            td.appendChild(document.createTextNode(registro.nome));
+                            tr.appendChild(td);
+
+                            var td = document.createElement('TD');
+                            td.appendChild(document.createTextNode(registro.endereco));
+                            tr.appendChild(td);
+
+                            var td = document.createElement('TD');
+                            td.appendChild(document.createTextNode(registro.endereco_complemento));
+                            tr.appendChild(td);
+
+                            var td = document.createElement('TD');
+                            td.appendChild(document.createTextNode(registro.endereco_cidade));
+                            tr.appendChild(td);
+
+                            var td = document.createElement('TD');
+                            td.appendChild(document.createTextNode(registro.endereco_estado));
+                            tr.appendChild(td);
+
+                            var td = document.createElement('TD');
+                            td.appendChild(document.createTextNode(registro.endereco_CEP));
+                            tr.appendChild(td);
+                        });
+                    });
+                }
+            }).catch(function (err) {
+                console.error(err);
+                event.preventDefault();
+                event.stopPropagation();
+            });
+        }, false);
+    })();
+</script>
+
+</html>
