@@ -48,16 +48,14 @@ Pessoa.findAll = function (result) {
     });
 };
 Pessoa.update = function (id, pessoa, result) {
-    dbConn.query("UPDATE pessoas SET first_name=?,last_name=?,email=?,phone=?,organization=?,designation=?,salary=? WHERE id = ?",
+    dbConn.query("UPDATE pessoas SET email=?,nome=?,endereco=?,endereco_complemento=?,endereco_cidade=?,endereco_estado=?,endereco_CEP=? WHERE id = ?",
         [pessoa.email,
         pessoa.nome,
         pessoa.endereco,
         pessoa.endereco_complemento,
         pessoa.endereco_cidade,
         pessoa.endereco_estado,
-        pessoa.endereco_CEP,
-        pessoa.created_at,
-        pessoa.updated_at, 
+        pessoa.endereco_CEP,        
         id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
