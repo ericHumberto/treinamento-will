@@ -48,23 +48,6 @@
                 </tr>
             </thead>
             <tbody id="bodyTabelaPessoas">
-                <!-- <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr> -->
             </tbody>
         </table>
     </div>
@@ -124,6 +107,36 @@
 
                             var td = document.createElement('TD');
                             td.appendChild(document.createTextNode(registro.endereco_CEP));
+                            tr.appendChild(td);
+
+                            var td = document.createElement('TD');
+
+                            let botao = document.createElement('button');
+                            botao.id = 'botao' + registro.id;
+                            // botao.name = botao.id
+                            botao.textContent = 'Excluir';
+                            botao.onclick = () => {
+                                fetch("http://localhost:5000/api/v1/pessoas/" + registro.id, {
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json'
+                                    },
+                                    method: "DELETE",
+                                }).then(function (response) {
+                                    if (!response.ok) {
+                                        console.error(response);
+                                    } else {
+                                        alert("Pessoa " + registro.id + " apagada com sucesso");
+                                        setTimeout(
+                                            function () {
+                                                location.reload();
+                                            },
+                                            3000);
+                                    }
+                                });
+                            };
+
+                            td.appendChild(botao);
                             tr.appendChild(td);
                         });
                     });
