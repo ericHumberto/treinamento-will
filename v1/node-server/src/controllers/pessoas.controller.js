@@ -2,6 +2,18 @@
 
 const Pessoa = require('../models/pessoas.model');
 
+exports.login = function (req, res) {
+    const obj = req.body;
+
+    if (obj.usuario !== "matheus")
+        res.send("Usuario incorreto");
+
+    if (obj.senha !== "saopaulo")
+        res.send("Senha incorreta");
+
+    res.send("Usuario logado!");
+};
+
 exports.findAll = function (req, res) {
     Pessoa.findAll(function (err, pessoa) {
         console.log('controller')

@@ -121,6 +121,29 @@
         (function () {
             'use strict';
             window.addEventListener('load', function () {
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const id = urlParams.get('id');
+
+                if (id) {
+                    fetch("http://localhost:5000/api/v1/pessoas/" + id, {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        method: "GET",
+                    }).then(function (response) {
+                        if (!response.ok) {
+                            console.error(response);
+                        }
+                        return response.json().then(function (jsonResposta) {
+                            var inputEmail = document.getElementById('inputEmail');
+                            inputEmail.value = jsonResposta[0].email;
+                        });
+
+                    });
+                }
+
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
                 var forms = document.getElementsByClassName('needs-validation');
                 // Loop over them and prevent submission

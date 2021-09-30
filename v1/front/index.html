@@ -111,11 +111,11 @@
 
                             var td = document.createElement('TD');
 
-                            let botao = document.createElement('button');
-                            botao.id = 'botao' + registro.id;
+                            let botaoExcluir = document.createElement('button');
+                            botaoExcluir.id = 'botao' + registro.id;
                             // botao.name = botao.id
-                            botao.textContent = 'Excluir';
-                            botao.onclick = () => {
+                            botaoExcluir.textContent = 'Excluir';
+                            botaoExcluir.onclick = () => {
                                 fetch("http://localhost:5000/api/v1/pessoas/" + registro.id, {
                                     headers: {
                                         'Accept': 'application/json',
@@ -136,7 +136,17 @@
                                 });
                             };
 
-                            td.appendChild(botao);
+                            td.appendChild(botaoExcluir);
+                            tr.appendChild(td);
+
+                            let botaoEditar = document.createElement('button');
+                            botaoEditar.id = 'botaoEditar' + registro.id;
+                            botaoEditar.textContent = 'Editar';
+                            botaoEditar.onclick = () => {
+                                window.location = "cadastro.html?id=" + registro.id;
+                            };
+
+                            td.appendChild(botaoEditar);
                             tr.appendChild(td);
                         });
                     });
