@@ -6,12 +6,12 @@ const mysql = require('mysql');
 const dbConn = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : 'root',
-  port: 3307,
+  password : 'y5^T8/%jJkws.g=',
+  port: 3306,
   database : 'treinamento-turma-will_db'
 });
 dbConn.connect(function(err) {
   if (err) throw err;
   console.log("Banco de dados conectado!");
 });
-module.exports = dbConn;
+module.exports = dbConn;''

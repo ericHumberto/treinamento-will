@@ -77,4 +77,18 @@ Pessoa.delete = function (id, result) {
     });
 };
 
+Pessoa.search = function (pessoa, result) {
+    dbConn.query("SELECT * FROM pessoas WHERE NOME LIKE '%?%'", pessoa, function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
 module.exports = Pessoa;
+
+

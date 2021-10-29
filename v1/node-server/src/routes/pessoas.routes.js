@@ -8,5 +8,6 @@ router.post('/', pessoasController.create);
 router.get('/:id', pessoasController.findById);
 router.put('/:id', pessoasController.update);
 router.delete('/:id', pessoasController.delete);
+router.get('/search', pessoasController.search);
 
 module.exports = router

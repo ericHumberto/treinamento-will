@@ -15,6 +15,7 @@ exports.login = function (req, res) {
 };
 
 exports.findAll = function (req, res) {
+    console.log('testecontroller')
     Pessoa.findAll(function (err, pessoa) {
         console.log('controller')
         if (err)
@@ -70,5 +71,15 @@ exports.delete = function (req, res) {
         if (err)
             res.send(err);
         res.json({ error: false, message: 'Pessoa excluida com sucesso' });
+    });
+};
+
+exports.search = function (req, res) {
+    res.json(req.params.pessoa);
+    Pessoa.search(req.params.pessoa, function (err, pessoa) {
+        
+        if (err)
+            res.send(err);
+        res.json(pessoa);
     });
 };
