@@ -33,6 +33,11 @@
             </ul>
         </div>
     </nav>
+
+    <label for="inputProcurar">Procurar</label>
+    <input type="text" id="inputProcurar" oninput="procurarPessoal(this.value)"></input>
+    
+
     <div class="table-responsive">
         <table id="tabelaPessoas" class="table table-hover" style="margin: 1%;">
             <thead>
@@ -158,6 +163,9 @@
             });
         }, false);
     })();
+    function procurarPessoal(pessoa) {
+        console.log(pessoa);
+    }
 </script>
 
 </html>

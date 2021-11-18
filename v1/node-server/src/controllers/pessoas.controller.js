@@ -75,7 +75,8 @@ exports.delete = function (req, res) {
 };
 
 exports.search = function (req, res) {
-    res.json(req.params.pessoa);
+    //res.json(req.params.pessoa);
+    
     Pessoa.search(req.params.pessoa, function (err, pessoa) {
         
         if (err)
@@ -83,3 +84,4 @@ exports.search = function (req, res) {
         res.json(pessoa);
     });
 };
+
