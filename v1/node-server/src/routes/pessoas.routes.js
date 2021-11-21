@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const pessoasController = require('../controllers/pessoas.controller');
 
-router.get('/procurar:pessoa', pessoasController.search);
+router.get('/procurar', pessoasController.search);
 router.get('/', pessoasController.findAll);
 router.post('/login', pessoasController.login);
 router.post('/', pessoasController.create);
